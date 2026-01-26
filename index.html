@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Conversor Q</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header {
+      background: #ffcc00;
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .container {
+      padding: 20px;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: #fff;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+<header>Conversor Q</header>
+
+<div class="container">
+
+  <div id="home">
+    <button onclick="selectCategory('cervezas')">🍺 Cervezas</button>
+    <button onclick="selectCategory('gaseosas')">🥤 Gaseosas</button>
+    <button onclick="selectCategory('aguas')">💧 Aguas</button>
+  </div>
+
+  <div id="converter" class="hidden">
+    <select id="format"></select>
+
+    <select id="mode">
+      <option value="bultos_hl">Bultos → HL</option>
+      <option value="hl_bultos">HL → Bultos</option>
+    </select>
+
+    <input type="number" step="0.001" inputmode="decimal"
+      placeholder="Ingresar valor"
+      id="value"
+      oninput="calculate()">
+
+    <div class="result" id="result">—</div>
+
+    <button onclick="goHome()">⬅ Volver</button>
+  </div>
+
+</div>
+
+<script>
+const data = {
+  cervezas: {
+    "1L x12": 0.12,
+    "473cc x6": 0.028,
+    "473cc x24": 0.113,
+    "710cc x16": 0.1136,
+    "710cc x4": 0.0284,
+    "710cc x12": 0.0852,
+    "730cc x6": 0.0438,
+    "340cc x24": 0.0816,
+    "330cc x24": 0.0792,
+    "330cc x6": 0.0198
+  },
+  gaseosas: {
+    "3L x6": 0.18,
+    "2L x8": 0.16,
+    "2.25L x8": 0.18,
+    "1.5L x6": 0.09,
+    "1.25L x6": 0.075,
+    "750cc x6": 0.045,
+    "500cc x12": 0.06,
+    "500cc x6": 0.03,
+    "354cc x24": 0.085,
+    "354cc x6": 0.021,
+    "269cc x24": 0.0646,
+    "269cc x6": 0.0161,
+    "250cc x24": 0.06,
+    "250cc x4": 0.01,
+    "355cc x24": 0.0852,
+    "355cc x4": 0.0142
+  },
+  aguas: {
+    "6.3L x2": 0.126,
+    "2.25L x6": 0.135,
+    "2L x6": 0.12,
+    "1.5L x6": 0.09,
+    "1L x6": 0.06,
+    "750cc x6": 0.045,
+    "500cc x12": 0.06
+  }
+};
+
+let currentCategory = "";
+
+function selectCategory(cat) {
+  currentCategory = cat;
+  const select = document.getElementById("format");
+  select.innerHTML = "";
+  for (let key in data[cat]) {
+    const opt = document.createElement("option");
+    opt.value = key;
+    opt.textContent = key;
+    select.appendChild(opt);
+  }
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("converter").classList.remove("hidden");
+}
+
+function calculate() {
+  const value = parseFloat(document.getElementById("value").value);
+  const format = document.getElementById("format").value;
+  const mode = document.getElementById("mode").value;
+  const coef = data[currentCategory][format];
+
+  if (isNaN(value)) {
+    document.getElementById("result").textContent = "—";
+    return;
+  }
+
+  let result = mode === "bultos_hl"
+    ? value * coef
+    : value / coef;
+
+  document.getElementById("result").textContent = result.toFixed(3);
+}
+
+function goHome() {
+  document.getElementById("home").classList.remove("hidden");
+  document.getElementById("converter").classList.add("hidden");
+  document.getElementById("value").value = "";
+  document.getElementById("result").textContent = "—";
+}
+</script>
+
+</body>
+</html>
