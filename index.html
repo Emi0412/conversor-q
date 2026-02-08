@@ -154,8 +154,19 @@ function calculate() {
     ? value * coef
     : value / coef;
 
-  const unit = mode === "bultos_hl" ? " HL" : " bultos";
-  document.getElementById("result").textContent = result.toFixed(3) + unit;
+  if (mode === "bultos_hl") {
+    document.getElementById("result").textContent =
+      result.toLocaleString("es-AR", {
+        minimumFractionDigits: 3,
+        maximumFractionDigits: 3
+      }) + " HL";
+  } else {
+    document.getElementById("result").textContent =
+      result.toLocaleString("es-AR", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      }) + " bultos";
+  }
 }
 
 function goHome() {
