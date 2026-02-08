@@ -82,4 +82,57 @@
 
 <body>
 
-<header
+<header>
+  <h1>Conversor Q</h1>
+  <div class="subtitle">Bultos ↔ Hectolitros</div>
+  <div class="integration">Funciona sin instalación (PWA)</div>
+</header>
+
+<div class="container">
+  <label for="category">Seleccione categoría:</label>
+  <select id="category">
+    <option value="cerveza">Cerveza</option>
+    <option value="gaseosa">Gaseosa</option>
+    <option value="agua">Agua</option>
+  </select>
+
+  <label for="inputValue">Ingrese cantidad:</label>
+  <input type="number" id="inputValue" placeholder="0">
+
+  <button id="convertBtn">Convertir</button>
+
+  <div class="result hidden" id="result"></div>
+</div>
+
+<footer>
+  Conversor Q - Cervecería y Maltería Quilmes
+</footer>
+
+<script>
+  const categorySelect = document.getElementById('category');
+  const inputValue = document.getElementById('inputValue');
+  const convertBtn = document.getElementById('convertBtn');
+  const resultDiv = document.getElementById('result');
+
+  const coefficients = {
+    cerveza: 0.9,
+    gaseosa: 1.0,
+    agua: 1.1
+  };
+
+  convertBtn.addEventListener('click', () => {
+    const category = categorySelect.value;
+    const value = parseFloat(inputValue.value);
+    if (isNaN(value)) {
+      alert('Ingrese un número válido');
+      return;
+    }
+
+    const converted = value * coefficients[category];
+    resultDiv.textContent = `Resultado: ${converted.toFixed(3)}`;
+    resultDiv.classList.remove('hidden');
+  });
+</script>
+
+</body>
+</html>
