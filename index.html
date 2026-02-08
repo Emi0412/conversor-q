@@ -13,34 +13,28 @@
     }
 
     header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px;
       background: #ffffff;
+      padding: 20px 15px;
+      text-align: center;
       border-bottom: 2px solid #eaeaea;
     }
 
     header h1 {
-      margin: 0;
+      margin: 8px 0;
       font-size: 26px;
       color: #1f4fa3;
-      text-align: center;
-      flex-grow: 1;
     }
 
     .subtitle {
       font-size: 14px;
       color: #333;
-      margin: 4px 0 0 0;
-      text-align: center;
+      margin: 6px 0;
     }
 
     .integration {
       font-size: 12px;
       color: #555;
-      text-align: center;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .container {
@@ -83,41 +77,4 @@
       font-size: 12px;
       color: #777;
     }
-
-    /* Logos header */
-    .logo {
-      height: 60px;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <!-- Logo Quilmes a la izquierda -->
-  <img src="img/logo_quilmes_nuevo.png" alt="Quilmes" class="logo">
-
-  <div>
-    <h1>Conversor Q</h1>
-    <div class="subtitle">Herramienta interna de conversión<br>Bultos ↔ Hectolitros</div>
-    <div class="integration">Integrada con plataforma <strong>BEES</strong></div>
-  </div>
-
-  <!-- Logo BEES a la derecha -->
-  <img src="img/logo_bees.png" alt="BEES" class="logo">
-</header>
-
-<div class="container">
-
-  <div id="home">
-    <button onclick="selectCategory('cervezas')">🍺 Cervezas</button>
-    <button onclick="selectCategory('gaseosas')">🥤 Gaseosas</button>
-    <button onclick="selectCategory('aguas')">💧 Aguas</button>
-  </div>
-
-  <div id="converter" class="hidden">
-    <select id="format"></select>
-
-    <select id="mode">
-      <option value="bultos_hl">Bultos → HL</option>
-      <option
+  </style
