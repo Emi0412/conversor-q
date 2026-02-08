@@ -12,6 +12,7 @@
       background: #f4f4f4;
     }
 
+    /* Header institucional */
     header {
       display: flex;
       align-items: center;
@@ -24,7 +25,8 @@
     header h1 {
       margin: 0;
       font-size: 26px;
-      color: #1f4fa3;
+      color: #1f4fa3; /* Azul Quilmes */
+      text-align: center;
     }
 
     header .subtitle {
@@ -36,6 +38,7 @@
       padding: 20px;
     }
 
+    /* Botones de categoría */
     #home button {
       width: 100%;
       padding: 15px;
@@ -44,15 +47,7 @@
       border: none;
       border-radius: 8px;
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       cursor: pointer;
-    }
-
-    #home button img {
-      height: 24px;
-      margin-right: 8px;
     }
 
     #converter select,
@@ -101,24 +96,4 @@
   <!-- Logo Quilmes -->
   <img src="img/logo_quilmes_nuevo.png" alt="Quilmes" style="height:60px;">
 
-  <div style="text-align:center; flex-grow:1; margin:0 15px;">
-    <h1>Conversor Q</h1>
-    <div class="subtitle">
-      Herramienta interna de conversión<br>
-      Bultos ↔ Hectolitros
-    </div>
-  </div>
-
-  <!-- Logo BEES -->
-  <img src="img/logo_bees.png" alt="BEES" style="height:60px;">
-</header>
-
-<div class="container">
-
-  <div id="home">
-    <button onclick="selectCategory('cervezas')" style="background:#1f4fa3;">
-      <img src="img/logo_cerveza.png" alt="">Cervezas
-    </button>
-
-    <button onclick="selectCategory('gaseosas')" style="background:#00a651;">
-      <img src="img/logo_g
+  <div style="flex-grow:1; text-align:center;">
